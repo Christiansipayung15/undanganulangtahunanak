@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Jamin  - Sky Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            background-color: #e0f2fe; 
+            font-family: 'Montserrat', sans-serif;
+            color: #2c3e50;
+            overflow: hidden; /* Dikunci saat awal agar tidak scroll sebelum dibuka */
+        }
+
+        /* --- WELCOME SCREEN OVERLAY --- */
+        /* --- WELCOME SCREEN OVERLAY UPDATE --- */
+#welcome-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Ganti 'foto-bayi.jpg' dengan nama file foto Anda */
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                url('devan.jpeg') no-repeat center center;
+    background-size: cover;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Posisi konten di bawah seperti gambar */
+    align-items: center;
+    padding-bottom: 80px; /* Jarak dari bawah layar */
+    transition: transform 1s ease-in-out;
+}
+
+.guest-text {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.guest-name {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.birthday-main-title {
+    font-family: 'Great Vibes', cursive;
+    color: #f3ce7a; /* Warna kuning emas pucat sesuai gambar */
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.btn-open {
+    padding: 12px 0;
+    width: 280px; /* Tombol lebar sesuai gambar */
+    background: #f3ce7a; /* Warna kuning sesuai gambar */
+    color: #333;
+    border: none;
+    border-radius: 5px; /* Sedikit kotak sesuai gambar */
+    font-weight: 500;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    text-transform: none;
+}
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- MAIN CONTENT --- */
+        .container {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #f0f9ff 0%, #bae6fd 50%, #7dd3fc 100%);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 60px 25px;
+            position: relative;
+        }
+
+        /* Tipografi */
+        .gold-text {
+            background: linear-gradient(to bottom, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .script-font { font-family: 'Great Vibes', cursive; }
+
+        /* Countdown */
+        .countdown { display: flex; gap: 10px; margin: 30px 0; }
+        .box {
+            background: white; color: #b45309;
+            width: 65px; padding: 10px; border-radius: 12px;
+            border: 1px solid #fde68a;
+        }
+        .box span { display: block; font-weight: bold; font-size: 1.1rem; }
+
+        .photo-frame {
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            border: 6px solid white;
+            overflow: hidden;
+            margin: 25px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .btn-maps {
+            display: inline-block;
+            background: linear-gradient(45deg, #34d399, #10b981);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            z-index: 1000;
+            background: white;
+            border-radius: 50%;
+            width: 45px; height: 45px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="ultah.mp4" type="audio/mpeg">
+</audio>
+
+<div class="music-control" onclick="toggleMusic()">🎵</div>
+
+<div id="welcome-overlay">
+    <h1 class="birthday-main-title">Jamni Devan Nathanael Simarmata 5th</h1>
+
+    <p class="guest-text">Kepada</p>
+    <p class="guest-name">Teman-teman ku tersayang</p>
+    
+    <button class="btn-open" onclick="openInvitation()">Buka Undangan</button>
+</div>
+
+<div class="container">
+    
+    <section id="cover">
+        <div data-aos="fade-down">
+            <p style="letter-spacing: 2px; color: #1e40af; font-weight: 600;"></p>
+            <h1 class="birthday-title gold-text script-font" style="font-size: 5rem;">Birthday</h1>
+            <p class="script-font" style="font-size: 2.5rem; color: #574b90; margin-top: -20px;">Party</p>
+        </div>
+
+        <div data-aos="zoom-in" data-aos-delay="300">
+            <h2 class="script-font" style="font-size: 2rem; color: #b45309; margin-top: 30px;">Jamin  Nathanael Simarmata</h2>
+            <p style="font-weight: 700; color: #1e40af;">KE-5</p>
+        </div>
+
+        <div class="countdown" data-aos="fade-up">
+            <div class="box"><span id="days">0</span><small>Hari</small></div>
+            <div class="box"><span id="hours">0</span><small>Jam</small></div>
+            <div class="box"><span id="minutes">0</span><small>Menit</small></div>
+            <div class="box"><span id="seconds">0</span><small>Detik</small></div>
+        </div>
+    </section>
+
+    <section id="profile">
+        <h2 class="script-font gold-text" style="font-size: 3rem;" data-aos="fade-up">Hallo Teman-teman!</h2>
+        <p style="margin: 20px 0; color: #1e3a8a;" data-aos="fade-up">
+            Aku sangat senang jika teman-teman bisa hadir di hari ulang tahunku yang ke-5.
+        </p>
+        <div class="photo-frame" data-aos="zoom-in-up">
+            <img src="devan.jpeg" style="width:100%;" alt="Devan">
+        </div>
+        <h3 class="script-font" style="font-size: 2.2rem; color: #1e40af;">Jamin Devan Nathanael Simarmata</h3>
+    </section>
+
+    <section id="details">
+        <div class="card-info" style="background: white; padding: 30px; border-radius: 20px; width: 100%; shadow: 0 4px 10px rgba(0,0,0,0.1);" data-aos="flip-left">
+            <h1 class="script-font gold-text" style="font-size: 3.5rem;">Save The Date</h1>
+            <h2 style="margin: 20px 0; font-size: 1.2rem;">Selasa, 25 Desember 2025</h2>
+            <p><b>Pukul:</b> 09:00 WIB - Selesai</p>
+            <p style="margin-top: 15px; font-size: 0.9rem;">
+                <b>Lokasi:</b> Garut Dinoland<br>
+                Kp. Cibolerang, Kec. Tarogong Kaler, Garut.
+            </p>
+            <a href="https://maps.google.com" target="_blank" class="btn-maps">📍 Buka Maps</a>
+        </div>
+        <p style="margin-top: 50px; font-style: italic; color: #1e40af;">"Sampai jumpa di sana, teman-teman!"</p>
+    </section>
+
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Inisialisasi Animasi
+    AOS.init({ duration: 1000, once: false });
+
+    const bgMusic = document.getElementById("bgMusic");
+
+    // FUNGSI BUKA UNDANGAN & AUTO SCROLL
+    function openInvitation() {
+        // 1. Hilangkan Overlay
+        document.getElementById("welcome-overlay").style.transform = "translateY(-100%)";
+        
+        // 2. Izinkan Scroll
+        document.body.style.overflow = "auto";
+        
+        // 3. Putar Musik
+        bgMusic.play();
+
+        // 4. AUTO SCROLL ke Profil setelah 1 detik
+        setTimeout(() => {
+            document.getElementById('profile').scrollIntoView({ behavior: 'smooth' });
+        }, 1000);
+    }
+
+    function toggleMusic() {
+        if (bgMusic.paused) { bgMusic.play(); } else { bgMusic.pause(); }
+    }
+
+    // HITUNG MUNDUR (COUNTDOWN)
+    const targetDate = new Date("Dec 25, 2025 09:00:00").getTime();
+
+    setInterval(() => {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+    }, 1000);
+</script>
+
+</body>
+</html>
