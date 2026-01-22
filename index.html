@@ -232,13 +232,14 @@
     }
 
     function startAutoScroll() {
-        // DIUBAH: 10ms adalah batas kecepatan yang sangat lancar di browser
+        // Interval tetap di 10ms untuk kemulusan (smoothness)
         autoScrollInterval = setInterval(() => {
-            // Nilai '2' berarti turun 2 piksel setiap 10 milidetik (Total 200px per detik)
-            window.scrollBy(0, 2); 
+            // Nilai '5' akan membuat layar meluncur dengan sangat cepat
+            // (Sekitar 500 piksel per detik)
+            window.scrollBy(0, 3); 
             
             // Berhenti otomatis jika sudah sampai paling bawah
-            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 2) {
                 stopAutoScroll();
             }
         }, 10); 
