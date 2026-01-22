@@ -155,7 +155,7 @@
 <div class="music-control" onclick="toggleMusic()">🎵</div>
 
 <div id="welcome-overlay">
-    <h1 class="birthday-main-title">Jamni Devan Nathanael Simarmata 5th</h1>
+    <h1 class="birthday-main-title">Jamin Devan Nathanael Simarmata 5th</h1>
 
     <p class="guest-text">Kepada</p>
     <p class="guest-name">Teman-teman ku tersayang</p>
@@ -218,35 +218,50 @@
     AOS.init({ duration: 1000, once: false });
 
     const bgMusic = document.getElementById("bgMusic");
+    let autoScrollInterval; 
 
-    // FUNGSI BUKA UNDANGAN & AUTO SCROLL
     function openInvitation() {
-        // 1. Hilangkan Overlay
         document.getElementById("welcome-overlay").style.transform = "translateY(-100%)";
-        
-        // 2. Izinkan Scroll
         document.body.style.overflow = "auto";
-        
-        // 3. Putar Musik
         bgMusic.play();
 
-        // 4. AUTO SCROLL ke Profil setelah 1 detik
+        // Mulai Auto Scroll lebih cepat setelah 1 detik
         setTimeout(() => {
-            document.getElementById('profile').scrollIntoView({ behavior: 'smooth' });
+            startAutoScroll();
         }, 1000);
     }
+
+    function startAutoScroll() {
+        // DIUBAH: 10ms adalah batas kecepatan yang sangat lancar di browser
+        autoScrollInterval = setInterval(() => {
+            // Nilai '2' berarti turun 2 piksel setiap 10 milidetik (Total 200px per detik)
+            window.scrollBy(0, 2); 
+            
+            // Berhenti otomatis jika sudah sampai paling bawah
+            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+                stopAutoScroll();
+            }
+        }, 10); 
+    }
+
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+    }
+
+    // Berhenti scroll jika pengguna menyentuh layar
+    window.addEventListener("mousedown", stopAutoScroll);
+    window.addEventListener("touchstart", stopAutoScroll);
+    window.addEventListener("wheel", stopAutoScroll);
 
     function toggleMusic() {
         if (bgMusic.paused) { bgMusic.play(); } else { bgMusic.pause(); }
     }
 
-    // HITUNG MUNDUR (COUNTDOWN)
+    // HITUNG MUNDUR (COUNTDOWN) Tetap Sama
     const targetDate = new Date("Dec 25, 2025 09:00:00").getTime();
-
     setInterval(() => {
         const now = new Date().getTime();
         const diff = targetDate - now;
-
         document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
         document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
